@@ -336,13 +336,7 @@ class _DetectorServer {
 
     return {
       "recognitions": recognitions,
-      "stats": <String, String>{
-        'Conversion time:': conversionElapsedTime.toString(),
-        'Pre-processing time:': preProcessElapsedTime.toString(),
-        'Inference time:': inferenceElapsedTime.toString(),
-        'Total prediction time:': totalElapsedTime.toString(),
-        'Frame': '${image.width} X ${image.height}',
-      },
+      "stats": <String, String>{},
     };
   }
 
