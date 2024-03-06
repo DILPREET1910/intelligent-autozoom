@@ -113,14 +113,14 @@ class _DetectorWidgetState extends State<DetectorWidget>
       ? Align(
           alignment: Alignment.bottomCenter,
           child: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 0.1,
             color: Colors.white.withAlpha(150),
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
+            child: const Padding(
+              padding: EdgeInsets.all(16.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                children: stats!.entries
-                    .map((e) => StatsWidget(e.key, e.value))
-                    .toList(),
+                children: [],
               ),
             ),
           ),
