@@ -11,7 +11,7 @@ class _ShutterWidgetState extends State<ShutterWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 400,
+      height: MediaQuery.of(context).size.height * 0.1,
       color: Colors.black.withOpacity(0.3),
     );
   }
