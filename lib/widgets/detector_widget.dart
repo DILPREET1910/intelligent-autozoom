@@ -94,9 +94,16 @@ class _DetectorWidgetState extends State<DetectorWidget>
 
     return Stack(
       children: [
-        AspectRatio(
-          aspectRatio: aspect,
-          child: CameraPreview(_controller),
+        SizedBox(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: FittedBox(
+            fit: BoxFit.cover,
+            child: SizedBox(
+              width: 5,
+              child: CameraPreview(_controller),
+            ),
+          ),
         ),
         // Bounding boxes
         AspectRatio(
