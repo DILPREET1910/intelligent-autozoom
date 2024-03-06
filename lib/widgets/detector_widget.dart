@@ -70,7 +70,7 @@ class _DetectorWidgetState extends State<DetectorWidget>
     // cameras[0] for back-camera
     _cameraController = CameraController(
       cameras[0],
-      ResolutionPreset.medium,
+      ResolutionPreset.max,
       enableAudio: false,
     )..initialize().then((_) async {
         await _controller.startImageStream(onLatestImageAvailable);
