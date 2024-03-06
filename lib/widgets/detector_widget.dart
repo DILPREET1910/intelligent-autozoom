@@ -98,8 +98,6 @@ class _DetectorWidgetState extends State<DetectorWidget>
           aspectRatio: aspect,
           child: CameraPreview(_controller),
         ),
-        // Stats
-        _statsWidget(),
         // Bounding boxes
         AspectRatio(
           aspectRatio: aspect,
@@ -108,24 +106,6 @@ class _DetectorWidgetState extends State<DetectorWidget>
       ],
     );
   }
-
-  Widget _statsWidget() => (stats != null)
-      ? Align(
-          alignment: Alignment.bottomCenter,
-          child: Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height * 0.1,
-            color: Colors.white.withAlpha(150),
-            child: const Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [],
-              ),
-            ),
-          ),
-        )
-      : const SizedBox.shrink();
 
   /// Returns Stack of bounding boxes
   Widget _boundingBoxes() {
