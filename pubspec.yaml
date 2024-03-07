@@ -39,6 +39,7 @@ dependencies:
   image: ^4.1.7
   tflite_flutter: ^0.10.4
   exif: ^3.3.0
+  flutter_riverpod: ^2.4.10
 
 dev_dependencies:
   flutter_test:

@@ -2,22 +2,23 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intelligent_autozoom/models/screen_params.dart';
 import 'package:intelligent_autozoom/services/detector_service.dart';
 import 'package:intelligent_autozoom/services/recognition.dart';
+import 'package:intelligent_autozoom/utils/providers.dart';
 import 'package:intelligent_autozoom/widgets/box_widget.dart';
-import 'package:intelligent_autozoom/widgets/stats_widget.dart';
 
 /// [DetectorWidget] sends each frame for inference
-class DetectorWidget extends StatefulWidget {
+class DetectorWidget extends ConsumerStatefulWidget {
   /// Constructor
   const DetectorWidget({super.key});
 
   @override
-  State<DetectorWidget> createState() => _DetectorWidgetState();
+  ConsumerState<DetectorWidget> createState() => _DetectorWidgetState();
 }
 
-class _DetectorWidgetState extends State<DetectorWidget>
+class _DetectorWidgetState extends ConsumerState<DetectorWidget>
     with WidgetsBindingObserver {
   /// List of available cameras
   late List<CameraDescription> cameras;
@@ -69,7 +70,7 @@ class _DetectorWidgetState extends State<DetectorWidget>
     cameras = await availableCameras();
     // cameras[0] for back-camera
     _cameraController = CameraController(
-      cameras[0],
+      cameras[ref.read(cameraStateProvider)],
       ResolutionPreset.max,
       enableAudio: false,
     )..initialize().then((_) async {

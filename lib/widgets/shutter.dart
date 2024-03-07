@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intelligent_autozoom/utils/providers.dart';
 
-class ShutterWidget extends StatefulWidget {
-  const ShutterWidget({super.key});
+class ShutterWidget extends ConsumerWidget {
+  final StateSetter homePageSetState;
+  const ShutterWidget({
+    super.key,
+    required this.homePageSetState,
+  });
 
   @override
-  State<ShutterWidget> createState() => _ShutterWidgetState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    int camera = ref.watch(cameraStateProvider);
 
-class _ShutterWidgetState extends State<ShutterWidget> {
-  @override
-  Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height * 0.1,
       color: Colors.black.withOpacity(0.3),
@@ -32,7 +35,15 @@ class _ShutterWidgetState extends State<ShutterWidget> {
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              homePageSetState(() {
+                if (camera == 0) {
+                  ref.read(cameraStateProvider.notifier).state = 1;
+                } else {
+                  ref.read(cameraStateProvider.notifier).state = 0;
+                }
+              });
+            },
             icon: Container(
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
