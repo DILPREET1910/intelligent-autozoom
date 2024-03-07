@@ -92,7 +92,7 @@ class _DetectorWidgetState extends ConsumerState<DetectorWidget>
     }
 
     var aspect = 1 / _controller.value.aspectRatio;
-
+    _cameraController!.setZoomLevel(ref.read(zoomLevelStateProvider));
     return Stack(
       children: [
         SizedBox(
