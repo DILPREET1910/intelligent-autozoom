@@ -304,29 +304,29 @@ class _DetectorServer {
     /*
       for multiple object detection
     */
-    for (int i = 0; i < numberOfDetections; i++) {
-      // Prediction score
-      var score = scores[i];
-      // Label string
-      var label = classification[i];
+    // for (int i = 0; i < numberOfDetections; i++) {
+    //   // Prediction score
+    //   var score = scores[i];
+    //   // Label string
+    //   var label = classification[i];
 
-      if (score > confidence) {
-        recognitions.add(
-          Recognition(i, label, score, locations[i]),
-        );
-      }
-    }
+    //   if (score > confidence) {
+    //     recognitions.add(
+    //       Recognition(i, label, score, locations[i]),
+    //     );
+    //   }
+    // }
 
     /*
       for single object detection
     */
-    // var score = scores[0];
-    // var label = classification[0];
-    // if (score > confidence) {
-    //   recognitions.add(
-    //     Recognition(0, label, score, locations[0]),
-    //   );
-    // }
+    var score = scores[0];
+    var label = classification[0];
+    if (score > confidence) {
+      recognitions.add(
+        Recognition(0, label, score, locations[0]),
+      );
+    }
 
     var inferenceElapsedTime =
         DateTime.now().millisecondsSinceEpoch - inferenceTimeStart;
