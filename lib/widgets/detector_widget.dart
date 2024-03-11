@@ -59,6 +59,7 @@ class _DetectorWidgetState extends ConsumerState<DetectorWidget>
           setState(() {
             results = values['recognitions'];
             stats = values['stats'];
+            ref.read(resultsStateProvider.notifier).state = results!;
           });
         });
       });
@@ -76,6 +77,7 @@ class _DetectorWidgetState extends ConsumerState<DetectorWidget>
     )..initialize().then((_) async {
         await _controller.startImageStream(onLatestImageAvailable);
         setState(() {});
+        ref.watch(cameracontrollerProvider.notifier).state = _cameraController;
 
         /// previewSize is size of each image frame captured by controller
         ///

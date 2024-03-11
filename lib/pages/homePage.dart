@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intelligent_autozoom/models/screen_params.dart';
 import 'package:intelligent_autozoom/utils/providers.dart';
 import 'package:intelligent_autozoom/widgets/detector_widget.dart';
+import 'package:intelligent_autozoom/widgets/objects_widget.dart';
 import 'package:intelligent_autozoom/widgets/shutter.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -37,6 +38,14 @@ class _HomePageState extends ConsumerState<HomePage> {
                   homePageSetState: homePageSetState,
                 ),
               ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).size.height * 0.1),
+                  child: const ObjectsWidget(),
+                ),
+              ),
               GestureDetector(
                 onScaleStart: (details) {
                   zoom = scaleFactor;
@@ -51,7 +60,6 @@ class _HomePageState extends ConsumerState<HomePage> {
                   }
 
                   ref.read(zoomLevelStateProvider.notifier).state = scaleFactor;
-                  print("Scale factor = ${ref.read(zoomLevelStateProvider)}");
                 },
               ),
             ],
