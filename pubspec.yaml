@@ -40,6 +40,7 @@ dependencies:
   tflite_flutter: ^0.10.4
   exif: ^3.3.0
   flutter_riverpod: ^2.4.10
+  gallery_saver: ^2.3.2
 
 dev_dependencies:
   flutter_test:

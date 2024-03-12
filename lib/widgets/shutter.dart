@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gallery_saver/gallery_saver.dart';
 import 'package:intelligent_autozoom/pages/image_preview.dart';
 import 'package:intelligent_autozoom/utils/providers.dart';
 
@@ -44,7 +45,9 @@ class ShutterWidget extends ConsumerWidget {
                     MaterialPageRoute(
                       builder: (context) => ImagePreview(image: image),
                     ),
-                  );
+                  ).then((value) {
+                    GallerySaver.saveImage(image.path);
+                  });
                 }
               } catch (error) {
                 log("Error while taking picture: $error");
