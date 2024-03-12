@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter/widgets.dart';
 import 'package:intelligent_autozoom/models/screen_params.dart';
-import 'package:intelligent_autozoom/utils/providers.dart';
 import 'package:intelligent_autozoom/widgets/detector_widget.dart';
 import 'package:intelligent_autozoom/widgets/shutter.dart';
 
-class HomePage extends ConsumerStatefulWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
-  ConsumerState<HomePage> createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends ConsumerState<HomePage> {
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     ScreenParams.screenSize = MediaQuery.sizeOf(context);
@@ -30,28 +29,16 @@ class _HomePageState extends ConsumerState<HomePage> {
           ),
           body: Stack(
             children: [
-              const DetectorWidget(),
+              InteractiveViewer(
+                minScale: 0.1,
+                maxScale: 8.0,
+                child: const DetectorWidget(),
+              ),
               Align(
                 alignment: Alignment.bottomCenter,
                 child: ShutterWidget(
                   homePageSetState: homePageSetState,
                 ),
-              ),
-              GestureDetector(
-                onScaleStart: (details) {
-                  zoom = scaleFactor;
-                },
-                onScaleUpdate: (details) {
-                  if (scaleFactor >= 1.0 && scaleFactor <= 8.0) {
-                    scaleFactor = zoom * details.scale;
-                  } else if (scaleFactor < 1.0) {
-                    scaleFactor = 1.0;
-                  } else if (scaleFactor > 8.0) {
-                    scaleFactor = 8.0;
-                  }
-
-                  ref.read(zoomLevelStateProvider.notifier).state = scaleFactor;
-                },
               ),
             ],
           ),

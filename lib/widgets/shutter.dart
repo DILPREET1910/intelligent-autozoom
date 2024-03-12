@@ -20,8 +20,13 @@ class ShutterWidget extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.camera),
+            onPressed: () {
+              ref.read(zoomLevelStateProvider.notifier).state = 1.0;
+            },
+            icon: const Icon(
+              Icons.camera,
+              color: Colors.white,
+            ),
           ),
           IconButton(
             onPressed: () {},
