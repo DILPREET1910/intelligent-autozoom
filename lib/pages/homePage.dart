@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intelligent_autozoom/models/screen_params.dart';
+import 'package:intelligent_autozoom/utils/providers.dart';
+import 'package:intelligent_autozoom/widgets/camera_app_bar.dart';
 import 'package:intelligent_autozoom/widgets/detector_widget.dart';
 import 'package:intelligent_autozoom/widgets/shutter.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  ConsumerState<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends ConsumerState<HomePage> {
   @override
   Widget build(BuildContext context) {
     ScreenParams.screenSize = MediaQuery.sizeOf(context);
@@ -25,7 +27,8 @@ class _HomePageState extends State<HomePage> {
           key: GlobalKey(),
           backgroundColor: Colors.black,
           appBar: AppBar(
-            title: const Text('Intelligent Autozoom'),
+            backgroundColor: Colors.black,
+            title: const CameraAppBar(),
           ),
           body: Stack(
             children: [
