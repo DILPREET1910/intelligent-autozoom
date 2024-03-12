@@ -12,9 +12,21 @@ class ImagePreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Image.file(
-        File(image.path),
+    return InteractiveViewer(
+      minScale: 0.8,
+      maxScale: 8.0,
+      child: Scaffold(
+        backgroundColor: Colors.black,
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          iconTheme: const IconThemeData(color: Colors.white),
+        ),
+        body: Container(
+          color: Colors.black,
+          child: Image.file(
+            File(image.path),
+          ),
+        ),
       ),
     );
   }
