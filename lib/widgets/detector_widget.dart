@@ -76,6 +76,7 @@ class _DetectorWidgetState extends ConsumerState<DetectorWidget>
     )..initialize().then((_) async {
         await _controller.startImageStream(onLatestImageAvailable);
         setState(() {});
+        ref.read(cameraConterollerStateProvider.notifier).state = _cameraController;
 
         /// previewSize is size of each image frame captured by controller
         ///

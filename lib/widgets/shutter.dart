@@ -1,5 +1,9 @@
+import 'dart:developer';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intelligent_autozoom/pages/image_preview.dart';
 import 'package:intelligent_autozoom/utils/providers.dart';
 
 class ShutterWidget extends ConsumerWidget {
@@ -29,7 +33,23 @@ class ShutterWidget extends ConsumerWidget {
             ),
           ),
           IconButton(
-            onPressed: () {},
+            onPressed: () async {
+              try {
+                final image = await ref
+                    .read(cameraConterollerStateProvider)
+                    ?.takePicture();
+                if (image != null) {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ImagePreview(image: image),
+                    ),
+                  );
+                }
+              } catch (error) {
+                log("Error while taking picture: $error");
+              }
+            },
             icon: Container(
               decoration: const BoxDecoration(
                 shape: BoxShape.circle,
