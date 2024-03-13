@@ -43,19 +43,21 @@ class ShutterWidget extends ConsumerWidget {
                 }
               }
 
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return ImageHistoryViewer(
-                      listImages: listImages,
-                    );
-                  },
-                ),
-              );
+              if (listImages.isNotEmpty) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return ImageHistoryViewer(
+                        listImages: listImages,
+                      );
+                    },
+                  ),
+                );
+              }
             },
             icon: const Icon(
-              Icons.camera,
+              Icons.image,
               color: Colors.white,
             ),
           ),
