@@ -41,6 +41,7 @@ dependencies:
   exif: ^3.3.0
   flutter_riverpod: ^2.4.10
   gallery_saver: ^2.3.2
+  path_provider: ^2.1.2
 
 dev_dependencies:
   flutter_test:

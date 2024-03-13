@@ -5,8 +5,10 @@ import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gallery_saver/gallery_saver.dart';
+import 'package:intelligent_autozoom/pages/image_history_viewer.dart';
 import 'package:intelligent_autozoom/pages/image_preview.dart';
 import 'package:intelligent_autozoom/utils/providers.dart';
+import 'package:path_provider/path_provider.dart';
 
 class ShutterWidget extends ConsumerWidget {
   final StateSetter homePageSetState;
@@ -26,8 +28,19 @@ class ShutterWidget extends ConsumerWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           IconButton(
-            onPressed: () {
-              ref.read(zoomLevelStateProvider.notifier).state = 1.0;
+            onPressed: () async {
+              final Directory appDocDir =
+                  await getApplicationDocumentsDirectory();
+              List<FileSystemEntity> listImages = appDocDir.listSync();
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const ImageHistoryViewer();
+                  },
+                ),
+              );
             },
             icon: const Icon(
               Icons.camera,
@@ -50,8 +63,13 @@ class ShutterWidget extends ConsumerWidget {
                     MaterialPageRoute(
                       builder: (context) => ImagePreview(image: image),
                     ),
-                  ).then((value) {
+                  ).then((value) async {
+                    // save to gallery
                     GallerySaver.saveImage(image.path);
+                    // save to appliaction path
+                    final Directory appDocDir =
+                        await getApplicationDocumentsDirectory();
+                    image.saveTo('${appDocDir.path}/${image.name}');
                   });
                 }
               } catch (error) {
