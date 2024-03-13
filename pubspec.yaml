@@ -42,6 +42,7 @@ dependencies:
   flutter_riverpod: ^2.4.10
   gallery_saver: ^2.3.2
   path_provider: ^2.1.2
+  carousel_slider: ^4.2.1
 
 dev_dependencies:
   flutter_test:

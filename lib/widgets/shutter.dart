@@ -31,13 +31,25 @@ class ShutterWidget extends ConsumerWidget {
             onPressed: () async {
               final Directory appDocDir =
                   await getApplicationDocumentsDirectory();
-              List<FileSystemEntity> listImages = appDocDir.listSync();
+              List<FileSystemEntity> listContents =
+                  await appDocDir.list().toList();
+              List<FileSystemEntity> listFiles =
+                  listContents.whereType<File>().toList();
+
+              List<File> listImages = [];
+              for (var file in listFiles) {
+                if (file.path.contains(".jpg") || file.path.contains(".png")) {
+                  listImages.add(File(file.path));
+                }
+              }
 
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return const ImageHistoryViewer();
+                    return ImageHistoryViewer(
+                      listImages: listImages,
+                    );
                   },
                 ),
               );
