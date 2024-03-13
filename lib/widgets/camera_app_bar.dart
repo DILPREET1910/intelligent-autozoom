@@ -14,22 +14,19 @@ class _CameraAppBarState extends ConsumerState<CameraAppBar> {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         ref.watch(zoomLevelStateProvider) == 1.0
-            ? const Text(
-                "1x",
-                style: TextStyle(
-                  color: Colors.yellow,
-                ),
+            ? const Icon(
+                Icons.one_x_mobiledata_rounded,
+                color: Colors.yellow,
               )
-            : GestureDetector(
-                child: const Text(
-                  "1x",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
+            : IconButton(
+                icon: const Icon(
+                  Icons.one_x_mobiledata_rounded,
+                  color: Colors.white,
                 ),
-                onTap: () {
+                onPressed: () {
                   ref.watch(zoomLevelStateProvider.notifier).state = 1.0;
                 },
               ),
@@ -40,7 +37,7 @@ class _CameraAppBarState extends ConsumerState<CameraAppBar> {
                       FlashMode.always;
                 },
                 icon: const Icon(
-                  Icons.flash_off,
+                  Icons.flash_off_rounded,
                   color: Colors.white,
                 ),
               )
@@ -50,7 +47,7 @@ class _CameraAppBarState extends ConsumerState<CameraAppBar> {
                       FlashMode.off;
                 },
                 icon: const Icon(
-                  Icons.flash_on,
+                  Icons.flash_on_rounded,
                   color: Colors.yellow,
                 ),
               ),
