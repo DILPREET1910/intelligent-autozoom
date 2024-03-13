@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intelligent_autozoom/utils/providers.dart';
@@ -32,8 +33,28 @@ class _CameraAppBarState extends ConsumerState<CameraAppBar> {
                   ref.watch(zoomLevelStateProvider.notifier).state = 1.0;
                 },
               ),
+        ref.watch(cameraFlashModeStateProvider) == FlashMode.off
+            ? IconButton(
+                onPressed: () {
+                  ref.watch(cameraFlashModeStateProvider.notifier).state =
+                      FlashMode.always;
+                },
+                icon: const Icon(
+                  Icons.flash_off,
+                  color: Colors.white,
+                ),
+              )
+            : IconButton(
+                onPressed: () {
+                  ref.watch(cameraFlashModeStateProvider.notifier).state =
+                      FlashMode.off;
+                },
+                icon: const Icon(
+                  Icons.flash_on,
+                  color: Colors.yellow,
+                ),
+              ),
       ],
     );
   }
 }
-

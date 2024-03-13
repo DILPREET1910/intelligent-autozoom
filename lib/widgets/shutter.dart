@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gallery_saver/gallery_saver.dart';
@@ -36,6 +37,10 @@ class ShutterWidget extends ConsumerWidget {
           IconButton(
             onPressed: () async {
               try {
+                ref
+                    .read(cameraConterollerStateProvider.notifier)
+                    .state
+                    ?.setFlashMode(ref.read(cameraFlashModeStateProvider));
                 final image = await ref
                     .read(cameraConterollerStateProvider)
                     ?.takePicture();
