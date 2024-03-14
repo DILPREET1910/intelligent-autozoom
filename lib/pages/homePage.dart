@@ -4,6 +4,7 @@ import 'package:intelligent_autozoom/models/screen_params.dart';
 import 'package:intelligent_autozoom/utils/providers.dart';
 import 'package:intelligent_autozoom/widgets/camera_app_bar.dart';
 import 'package:intelligent_autozoom/widgets/detector_widget.dart';
+import 'package:intelligent_autozoom/widgets/objects_widget.dart';
 import 'package:intelligent_autozoom/widgets/shutter.dart';
 
 class HomePage extends ConsumerStatefulWidget {
@@ -37,6 +38,14 @@ class _HomePageState extends ConsumerState<HomePage> {
                 alignment: Alignment.bottomCenter,
                 child: ShutterWidget(
                   homePageSetState: homePageSetState,
+                ),
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).size.height * 0.1),
+                  child: const ObjectsWidget(),
                 ),
               ),
               GestureDetector(

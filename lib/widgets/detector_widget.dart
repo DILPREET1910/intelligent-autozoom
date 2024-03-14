@@ -59,6 +59,7 @@ class _DetectorWidgetState extends ConsumerState<DetectorWidget>
           setState(() {
             results = values['recognitions'];
             stats = values['stats'];
+            ref.watch(resultsStateProvider.notifier).state = results!;
           });
         });
       });
