@@ -32,17 +32,30 @@ class _HomePageState extends ConsumerState<HomePage> {
           ),
           body: Stack(
             children: [
-              InteractiveViewer(
-                minScale: 0.1,
-                maxScale: 8.0,
-                child: const DetectorWidget(),
-              ),
+              const DetectorWidget(),
               Align(
                 alignment: Alignment.bottomCenter,
                 child: ShutterWidget(
                   homePageSetState: homePageSetState,
                 ),
               ),
+              GestureDetector(
+                onScaleStart: (details) {
+                  zoom = scaleFactor;
+                },
+                onScaleUpdate: (details) {
+                  if (scaleFactor >= 1.0 && scaleFactor <= 8.0) {
+                    scaleFactor = zoom * details.scale;
+                  } else if (scaleFactor < 1.0) {
+                    scaleFactor = 1.0;
+                  } else if (scaleFactor > 8.0) {
+                    scaleFactor = 8.0;
+                  }
+
+                  ref.watch(zoomLevelStateProvider.notifier).state =
+                      scaleFactor;
+                },
+              )
             ],
           ),
         );

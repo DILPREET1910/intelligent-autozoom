@@ -76,7 +76,8 @@ class _DetectorWidgetState extends ConsumerState<DetectorWidget>
     )..initialize().then((_) async {
         await _controller.startImageStream(onLatestImageAvailable);
         setState(() {});
-        ref.read(cameraConterollerStateProvider.notifier).state = _cameraController;
+        ref.read(cameraConterollerStateProvider.notifier).state =
+            _cameraController;
 
         /// previewSize is size of each image frame captured by controller
         ///
@@ -93,7 +94,7 @@ class _DetectorWidgetState extends ConsumerState<DetectorWidget>
     }
 
     var aspect = 1 / _controller.value.aspectRatio;
-    _cameraController!.setZoomLevel(ref.read(zoomLevelStateProvider));
+    _cameraController!.setZoomLevel(ref.watch(zoomLevelStateProvider));
     return Stack(
       children: [
         SizedBox(
