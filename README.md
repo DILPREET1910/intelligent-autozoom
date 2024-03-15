@@ -1,16 +1,9 @@
 # intelligent_autozoom
 
-A new Flutter project.
+[Demo Video](https://github.com/DILPREET1910/intelligent-autozoom/assets/81746463/ce03f9b5-5d8a-4544-887d-2f081d100039)
 
-## Getting Started
+A Camera applications that detects and autozooms into objects in the frame.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Aknowledgements
+- Thanks to [ccextractor](https://github.com/CCExtractor) for the idea
+- [Flutter-Tflite](https://github.com/tensorflow/flutter-tflite/tree/main/example/live_object_detection_ssd_mobilenet) for object detection on live camera feed
